@@ -3,6 +3,6 @@ version: '3'
 services:
   web:
     build: .
-    command: sh -c "cd app && uvicorn backend:app -reload --port-8080"
+    command: bash -c "cd app && uvicorn backend:app -reload --port-8080"
     ports:
       - 8080:8080
