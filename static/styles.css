@@ -10,7 +10,8 @@ body {
     max-width: 600px;
     margin: 50px auto;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.6);
+    background: linear-gradient(to right, #2c3e50, #34495e);
+    color: #fff;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -42,8 +43,8 @@ button:hover {
 
 p {
     font-size: 18px;
-    background-color: #4834d4;
-    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
     border-radius: 5px;
     margin-top: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
