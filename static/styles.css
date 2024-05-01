@@ -15,12 +15,13 @@ body {
     border-radius: 20px;
     padding: 40px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    display: flex; /* Use flexbox layout */
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 input[type="text"] {
+    flex: 1;
     width: calc(100% - 80px); /* Adjust width to leave space for the button */
     padding: 12px;
     margin-bottom: 30px;
@@ -31,11 +32,6 @@ input[type="text"] {
     transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-input[type="text"]:focus {
-    border-color: #6c5ce7;
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
 button {
     padding: 14px 28px;
     background-color: #6c5ce7;
@@ -44,11 +40,7 @@ button {
     cursor: pointer;
     border-radius: 20px;
     transition: background-color 0.3s ease;
-    width: 140px; /* Set fixed width for the button */
-}
-
-button:hover {
-    background-color: #4834d4;
+    width: 140px;
 }
 
 /* Response styles */
@@ -93,17 +85,17 @@ button:hover {
     position: fixed;
     bottom: 0;
     width: 100%;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow at the top */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .footer p {
     margin: 0;
     font-size: 14px;
     font-family: Arial, sans-serif;
-    opacity: 0.8; /* Reduce opacity for a subtle effect */
+    opacity: 0.8;
 }
 
 .footer p span {
-    font-weight: bold; /* Make the "Powered by" text bold */
-    color: #6c5ce7; /* Match the color with the button */
+    font-weight: bold;
+    color: #6c5ce7;
 }
