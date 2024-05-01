@@ -20,10 +20,17 @@ body {
     align-items: center;
 }
 
-input[type="text"] {
-    width: calc(100% - 80px);
-    padding: 12px;
+.input-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
     margin-bottom: 30px;
+}
+
+input[type="text"] {
+    flex: 1;
+    width: calc(100% - 140px);
+    padding: 12px;
     border-radius: 20px;
     border: 2px solid transparent;
     background-color: rgba(255, 255, 255, 0.1);
