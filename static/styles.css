@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #262626, #1a1a1a);
+    background: linear-gradient(to right, #2f2f2f, #1a1a1a);
     color: #fff;
 }
 
@@ -10,7 +10,7 @@ body {
     max-width: 600px;
     margin: 50px auto;
     text-align: center;
-    background: linear-gradient(to right, #262626, #1a1a1a);
+    background: rgba(255, 255, 255, 0.05);
     color: #fff;
     border-radius: 10px;
     padding: 40px;
@@ -19,27 +19,27 @@ body {
 
 input[type="text"] {
     width: calc(100% - 40px);
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: none;
+    padding: 12px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    border: 2px solid transparent;
     background-color: rgba(255, 255, 255, 0.1);
     color: #fff;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 input[type="text"]:focus {
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: #6c5ce7;
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 button {
-    padding: 12px 24px;
+    padding: 14px 28px;
     background-color: #6c5ce7;
     color: #fff;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 20px;
     transition: background-color 0.3s ease;
 }
 
@@ -50,8 +50,8 @@ button:hover {
 p {
     font-size: 18px;
     background-color: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 5px;
-    margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
