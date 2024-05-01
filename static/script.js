@@ -13,7 +13,9 @@ document.getElementById("linkForm").addEventListener("submit", function(event) {
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById("message").textContent = data.message;
+        var messageElement = document.getElementById("message");
+        messageElement.textContent = data.message;
+        messageElement.style.display = "block"; // Show the message element
     })
     .catch(error => {
         console.error("Error:", error);
