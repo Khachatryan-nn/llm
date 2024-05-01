@@ -1,14 +1,25 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Form
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
+import requests
 
 app = FastAPI()
 
 # Mounting the static files directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+# Dummy function to simulate LLM model output
+def generate_message(link_length):
+    return f"Hello, the length of the link is {link_length}."
+
 @app.get("/", response_class=HTMLResponse)
 async def read_item():
     with open("/var/www/html/index.html", "r") as file:
         html_content = file.read()
     return HTMLResponse(content=html_content)
+
+@app.post("/")
+async def generate_response(link: str = Form(...)):
+    link_length = len(link)
+    message = generate_message(link_length)
+    return {"message": message}

@@ -1,10 +1,21 @@
-function submitLink() {
+document.getElementById("linkForm").addEventListener("submit", function(event) {
+    event.preventDefault();
     var link = document.getElementById("linkInput").value;
-    var message = document.getElementById("message");
     
-    // Calculate the length of the link
-    var linkLength = link.length;
-    
-    // Display the message
-    message.textContent = "Hello, " + linkLength;
-}
+    fetch("/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+            link: link,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("message").textContent = data.message;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+});
