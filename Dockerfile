@@ -1,6 +1,7 @@
 FROM python:3.8.10-slim
 
-WORKDIR /web
+# Set environment variables
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install system dependencies
 RUN apt-get update \
@@ -8,11 +9,15 @@ RUN apt-get update \
         pkg-config \
         libcairo2-dev \
         build-essential \
+        python3-apt \
     && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory
+WORKDIR /web
 
 # Copy application code
 COPY . /web
 
 # Upgrade pip and install Python dependencies
 RUN pip install --upgrade pip \
-    && pip install -r app/requirements.txt
+    && pip install --no-cache-dir -r app/requirements.txt
