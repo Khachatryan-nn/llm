@@ -20,7 +20,7 @@ async def read_item():
     html_content = html_content.replace('{{ initial message }}', initial_message)
     return HTMLResponse(content=html_content)
 
-@app.post("/", response_model=dict)
+@app.post("/")
 async def generate_response(link: str = Form(...)):
     link_length = len(link)
     message = generate_message(link_length)
