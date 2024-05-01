@@ -5,4 +5,4 @@ services:
     build: .
     command: sh -c "cd app && uvicorn backend:app --port 8000"
     ports:
-      - 8000:8000
+      - 8080:8000
