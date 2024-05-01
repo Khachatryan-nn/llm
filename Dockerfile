@@ -10,6 +10,7 @@ RUN apt-get update \
         libcairo2-dev \
         build-essential \
         python3-apt \
+        libsystemd-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory
