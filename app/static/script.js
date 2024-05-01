@@ -28,6 +28,7 @@ document.getElementById("linkForm").addEventListener("submit", async function(ev
     console.log(response);
     try {
         const data = await response.json();
+		console.log(data);
         
         var messageElement = document.getElementById("message");
         messageElement.innerHTML = "<p>" + data.message + "</p>";
