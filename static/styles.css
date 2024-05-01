@@ -21,8 +21,7 @@ body {
 }
 
 input[type="text"] {
-    flex: 1;
-    width: calc(100% - 80px); /* Adjust width to leave space for the button */
+    width: calc(100% - 80px);
     padding: 12px;
     margin-bottom: 30px;
     border-radius: 20px;
@@ -45,7 +44,7 @@ button {
 
 /* Response styles */
 .response {
-    max-width: 100%;
+    max-width: calc(100% - 80px);
     padding: 20px;
     margin-bottom: 20px;
     background-color: #6c5ce7;
