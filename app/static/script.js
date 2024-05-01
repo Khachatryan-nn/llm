@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const url = formData.get('url');
 
         try {
-            const response = await fetch('/analyze', {
+            const response = await fetch('/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
