@@ -11,6 +11,8 @@ RUN apt-get update \
         build-essential \
         python3-apt \
         libsystemd-dev \
+        libdbus-1-dev \
+        libgirepository1.0-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory
