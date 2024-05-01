@@ -16,6 +16,8 @@ document.getElementById("linkForm").addEventListener("submit", async function(ev
     var link = document.getElementById("linkInput").value;
 	console.log(link)
     
+    var link = document.getElementById("linkInput").value;
+	console.log(link)
     try {
         const response = await fetch("/", {
             method: "POST",
@@ -27,7 +29,6 @@ document.getElementById("linkForm").addEventListener("submit", async function(ev
 			}),
         });
         const data = await response.json();
-		console.log(data.message)
         
         var messageElement = document.getElementById("message");
         messageElement.innerHTML = "<p>" + data.message + "</p>";
