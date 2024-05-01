@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             const data = await response.json();
-            resultDiv.innerText = data.result;
+            resultDiv.innerText = data.url; // Access the correct property (url)
         } catch (error) {
             console.error('Error:', error);
             resultDiv.innerText = 'An error occurred while analyzing the webpage';
