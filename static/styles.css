@@ -47,6 +47,7 @@ button:hover {
     background-color: #4834d4;
 }
 
+/* Response styles */
 .response {
     max-width: 100%;
     padding: 20px;
@@ -79,17 +80,26 @@ button:hover {
     border-color: #6c5ce7 transparent transparent transparent;
 }
 
+/* Footer styles */
 .footer {
-    background-color: #1e1a2a;
+    background: linear-gradient(to right, #1e1a2a, #16213e);
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
     position: fixed;
     bottom: 0;
     width: 100%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow at the top */
 }
 
 .footer p {
     margin: 0;
     font-size: 14px;
+    font-family: Arial, sans-serif;
+    opacity: 0.8; /* Reduce opacity for a subtle effect */
+}
+
+.footer p span {
+    font-weight: bold; /* Make the "Powered by" text bold */
+    color: #6c5ce7; /* Match the color with the button */
 }
