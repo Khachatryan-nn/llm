@@ -16,10 +16,8 @@ We can add subtle gradients, adjust the colors, and refine the shadow to enhance
 We can add subtle gradients, adjust the colors, and refine the shadow to enhance the modern and minimalistic appearance. Here's an updated version of your CSS:
 We can add subtle gradients, adjust the colors, and refine the shadow to enhance the modern and minimalistic appearance. Here's an updated version of your CSS:
 We can add subtle gradients, adjust the colors, and refine the shadow to enhance the modern and minimalistic appearance. Here's an updated version of your CSS:
-
-
 We can add subtle gradients, adjust the colors, and refine the shadow to enhance the modern and minimalistic appearance. Here's an updated version of your CSS:
-We can add subtle gradients, adjust the colors, and refine the shadow to enhance the modern and minimalistic appearance. Here's an updated version of your CSS:"""
+We can add subtle gradients, adjust the colors, and refine the shadow to enhance the modern and minimalistic appearance. Here's an updated version of your CSS:""".replace("\n", "<br>")
 
 @app.get("/")
 async def read_item():
