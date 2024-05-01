@@ -15,10 +15,13 @@ body {
     border-radius: 20px;
     padding: 40px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
 }
 
 input[type="text"] {
-    width: calc(100% - 40px);
+    width: calc(100% - 80px); /* Adjust width to leave space for the button */
     padding: 12px;
     margin-bottom: 30px;
     border-radius: 20px;
@@ -41,6 +44,7 @@ button {
     cursor: pointer;
     border-radius: 20px;
     transition: background-color 0.3s ease;
+    width: 140px; /* Set fixed width for the button */
 }
 
 button:hover {
