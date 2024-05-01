@@ -10,7 +10,14 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Dummy function to simulate LLM model output
 def generate_message(link_length):
-    return f"Hello, the length of the link is {link_length}."
+    return f"""Hello, the length of the link is {link_length}. 
+Certainly! Let's refine the design further to make it even better. We can add subtle gradients, adjust the colors, and refine the shadow to enhance the modern and minimalistic appearance. Here's an updated version of your CSS:
+We can add subtle gradients, adjust the colors, and refine the shadow to enhance the modern and minimalistic appearance. Here's an updated version of your CSS:
+We can add subtle gradients, adjust the colors, and refine the shadow to enhance the modern and minimalistic appearance. Here's an updated version of your CSS:
+We can add subtle gradients, adjust the colors, and refine the shadow to enhance the modern and minimalistic appearance. Here's an updated version of your CSS:
+We can add subtle gradients, adjust the colors, and refine the shadow to enhance the modern and minimalistic appearance. Here's an updated version of your CSS:
+We can add subtle gradients, adjust the colors, and refine the shadow to enhance the modern and minimalistic appearance. Here's an updated version of your CSS:
+We can add subtle gradients, adjust the colors, and refine the shadow to enhance the modern and minimalistic appearance. Here's an updated version of your CSS:"""
 
 @app.get("/")
 async def read_item():
