@@ -23,7 +23,7 @@ app.add_middleware(
 class URLInput(BaseModel):
     url: str
 
-@app.post("/")
+@app.post("/analyze")
 async def analyze_webpage(url: str = Form(...)):
     try:
         # Fetching webpage content
