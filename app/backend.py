@@ -23,4 +23,4 @@ async def read_item():
 async def generate_response(link: str = Form(...)):
     link_length = len(link)
     message = generate_message(link_length)
-    return {"message": message}
+    return message  # Return only the message, not the entire HTML page
