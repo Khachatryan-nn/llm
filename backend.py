@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Form
+from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
-import requests
 
 app = FastAPI()
 
@@ -12,7 +11,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 def generate_message(link_length):
     return f"Hello, the length of the link is {link_length}."
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/")
 async def read_item():
     with open("/var/www/html/index.html", "r") as file:
         html_content = file.read()
@@ -20,8 +19,8 @@ async def read_item():
     html_content = html_content.replace('{{ initial message }}', initial_message)
     return HTMLResponse(content=html_content)
 
-@app.post("/")
+@app.post("/", response_model=dict)
 async def generate_response(link: str = Form(...)):
     link_length = len(link)
     message = generate_message(link_length)
-    return {"message": message}
+    return JSONResponse(content={"message": message})
