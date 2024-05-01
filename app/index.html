@@ -3,23 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebScraperAI</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Webpage Analyzer</title>
+    <script src="static/script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Web Scraper AI</h1>
-        <form action="/" method="post" id="linkForm" class="form">
-            <div class="input-wrapper">
-                <input type="text" id="linkInput" name="link" placeholder="Paste your link here">
-                <button type="submit">Submit</button>
-            </div>
-        </form>
-		<p id="message" class="response" style="display: none;"></p>
-    </div>
-	<footer class="footer">
-		<p>Powered by Google Gemini 1.5 Pro</p>
-	</footer>
-    <script src="/static/script.js"></script>
+    <h1>Webpage Analyzer</h1>
+    <form id="urlForm">
+        <label for="urlInput">Enter Webpage URL:</label>
+        <input type="text" id="urlInput" name="url">
+        <button type="submit">Analyze</button>
+    </form>
+    <div id="result"></div>
 </body>
 </html>
+
+<!--<link rel="stylesheet" href="/static/styles.css">-->

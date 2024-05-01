@@ -1,26 +1,30 @@
-// Function to handle form submission
-document.getElementById("linkForm").addEventListener("submit", async function(event) {
-    event.preventDefault();
-    var link = document.getElementById("linkInput").value;
-    
-    const response = await fetch("/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-            link: link,
-        }),
-    });
-    
-    if (response.ok) {
-        const data = await response.json(); // Parse response as JSON
-        document.getElementById("message").innerHTML = data.message; // Set message content
-        document.getElementById("message").style.display = "block"; // Show the message element
-    } else {
-        console.error('Error:', response.status);
-    }
-});
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('urlForm');
+    const resultDiv = document.getElementById('result');
 
-// Call the function to display the initial message when the page loads
-window.onload = displayInitialMessage;
+    form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const url = formData.get('url');
+
+        try {
+            const response = await fetch('/analyze', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ url })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to analyze webpage');
+            }
+
+            const data = await response.json();
+            resultDiv.innerText = data.result;
+        } catch (error) {
+            console.error('Error:', error);
+            resultDiv.innerText = 'An error occurred while analyzing the webpage';
+        }
+    });
+});
