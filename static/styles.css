@@ -48,31 +48,33 @@ button:hover {
 }
 
 .response {
-    font-size: 18px;
+    position: relative;
+    display: inline-block;
+    max-width: 70%;
+    padding: 15px;
+    margin-top: 20px;
     background-color: #6c5ce7;
-    padding: 20px;
-    border-radius: 20px;
-    margin-top: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    text-align: left;
+    color: #fff;
+    border-radius: 15px;
+    font-size: 16px;
 }
 
 .response::before {
     content: "";
     position: absolute;
-    top: -10px;
-    left: 20px;
+    top: 100%;
+    left: 10px;
     border-width: 10px;
     border-style: solid;
-    border-color: transparent transparent #6c5ce7 transparent;
+    border-color: #6c5ce7 transparent transparent transparent;
 }
 
 .response::after {
     content: "";
     position: absolute;
-    bottom: -10px;
-    left: 20px;
-    border-width: 10px;
+    top: calc(100% - 1px);
+    left: 12px;
+    border-width: 9px;
     border-style: solid;
-    border-color: #6c5ce7 transparent transparent transparent;
+    border-color: #fff transparent transparent transparent;
 }
