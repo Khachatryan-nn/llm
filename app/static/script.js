@@ -1,15 +1,17 @@
 async function displayInitialMessage() {
     const response = await fetch("/");
+    const clonedResponse = response.clone(); // Clone the response before consuming it
     try {
         const data = await response.json();
         document.getElementById("message").textContent = data.message;
         document.getElementById("message").style.display = "block"; // Show the message element
     } catch (error) {
-        const responseText = await response.clone().text(); // Get the raw text of the response body
+        const responseText = await clonedResponse.text(); // Get the raw text of the response body
         console.log('Received the following instead of valid JSON:', responseText);
         console.error('Error parsing JSON from response:', error);
     }
 }
+
 
 document.getElementById("linkForm").addEventListener("submit", async function(event) {
     event.preventDefault();
