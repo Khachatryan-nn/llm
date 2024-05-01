@@ -47,13 +47,6 @@ button:hover {
     background-color: #4834d4;
 }
 
-.response-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 20px;
-}
-
 .response {
     max-width: 70%;
     padding: 15px;
@@ -63,23 +56,25 @@ button:hover {
     border-radius: 20px;
     font-size: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.response-container .response:last-child {
-    margin-bottom: 0;
+    position: relative;
 }
 
 .response::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: -15px;
-    width: 15px;
-    height: 15px;
-    background-color: #6c5ce7;
-    clip-path: polygon(0 0, 100% 0, 0 100%);
+    top: -8px;
+    left: 20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #6c5ce7 transparent;
 }
 
-.response-container .response:last-child::before {
-    display: none;
+.response::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #6c5ce7 transparent transparent transparent;
 }
