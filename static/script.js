@@ -23,7 +23,7 @@ document.getElementById("linkForm").addEventListener("submit", async function(ev
     const data = await response.json();
     
     var messageElement = document.getElementById("message");
-    messageElement.textContent = data.message;
+    messageElement.innerHTML = "<p>" + data.message + "</p>";
     messageElement.style.display = "block"; // Show the message element
 });
 
