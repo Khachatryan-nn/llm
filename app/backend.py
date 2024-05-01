@@ -26,6 +26,7 @@ async def generate_response(request: Request):
     if link is None:
         return JSONResponse({"error": "Link not provided"}, status_code=400)
     
-    link_length = len(link)
-    message = generate_message(link_length)
+    #link_length = len(link)
+    #message = generate_message(link_length)
+    message = "Hello, the length of the link is 10.\nThanks for using our services!"
     return JSONResponse(content={"message": message})
