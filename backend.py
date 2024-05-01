@@ -16,6 +16,8 @@ def generate_message(link_length):
 async def read_item():
     with open("/var/www/html/index.html", "r") as file:
         html_content = file.read()
+    initial_message = generate_message(0)  # Initial message with link length 0
+    html_content = html_content.replace('<!--INITIAL_MESSAGE-->', initial_message)
     return HTMLResponse(content=html_content)
 
 @app.post("/")
