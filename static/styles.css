@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #2f2f2f, #1a1a1a);
+    background: linear-gradient(to right, #1e1a2a, #16213e);
     color: #fff;
 }
 
@@ -12,7 +12,7 @@ body {
     text-align: center;
     background: rgba(255, 255, 255, 0.05);
     color: #fff;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 40px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
@@ -47,11 +47,32 @@ button:hover {
     background-color: #4834d4;
 }
 
-p {
+.response {
     font-size: 18px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #6c5ce7;
     padding: 20px;
     border-radius: 20px;
     margin-top: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+.response::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #6c5ce7 transparent;
+}
+
+.response::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #6c5ce7 transparent transparent transparent;
 }
