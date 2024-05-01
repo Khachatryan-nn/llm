@@ -10,11 +10,14 @@
     <div class="container">
         <h1>Powered by Google Gemini 1.5 Pro</h1>
         <form action="/" method="post" id="linkForm">
-			<input type="text" id="linkInput" name="link" placeholder="Paste your link here">
-			<button type="submit">Submit</button>
-		</form>
-		<p id="message" style="display: none;"></p>				
-		
+            <input type="text" id="linkInput" name="link" placeholder="Paste your link here">
+            <button type="submit">Submit</button>
+        </form>
+        <div class="response-container" style="display: none;">
+            <div class="response">Sample Response Message 1</div>
+            <div class="response">Sample Response Message 2</div>
+            <!-- Add more response messages here if needed -->
+        </div>
     </div>
     <script src="/static/script.js"></script>
 </body>
