@@ -19,11 +19,11 @@ document.getElementById("linkForm").addEventListener("submit", async function(ev
         const response = await fetch("/", {
             method: "POST",
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: new URLSearchParams({
-                link: link,
-            }),
+				"Content-Type": "application/json", // Set content type to JSON
+			},
+			body: JSON.stringify({
+				link: link,
+			}),
         });
         const data = await response.json();
         
