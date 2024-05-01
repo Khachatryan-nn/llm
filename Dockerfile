@@ -4,4 +4,6 @@ WORKDIR /web
 
 COPY . /web
 
-RUN pip install -r app/requirements.txt
+RUN pip3 install --upgrade pip3
+
+RUN pip3 install -r app/requirements.txt
