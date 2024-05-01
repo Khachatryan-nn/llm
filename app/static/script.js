@@ -1,30 +1,42 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('urlForm');
-    const resultDiv = document.getElementById('result');
+async function displayInitialMessage() {
+    try {
+        const response = await fetch("/");
+        const data = await response.json();
+        document.getElementById("message").textContent = data.message;
+        document.getElementById("message").style.display = "block"; // Show the message element
+    } catch (error) {
+        console.error('Error parsing JSON from response:', error);
+        const responseText = await response.clone().text(); // Get the raw text of the response body
+        console.log('Received the following instead of valid JSON:', responseText);
+    }
+}
 
-    form.addEventListener('submit', async function (event) {
-        event.preventDefault();
-        const formData = new FormData(form);
-        const url = formData.get('url');
-
-        try {
-            const response = await fetch('/analyze', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ url })
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to analyze webpage');
-            }
-
-            const data = await response.json();
-            resultDiv.innerText = data.url; // Access the correct property (url)
-        } catch (error) {
-            console.error('Error:', error);
-            resultDiv.innerText = 'An error occurred while analyzing the webpage';
-        }
-    });
+document.getElementById("linkForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    var link = document.getElementById("linkInput").value;
+	console.log(link)
+    
+    try {
+        const response = await fetch("/", {
+            method: "POST",
+            headers: {
+				"Content-Type": "application/json", // Set content type to JSON
+			},
+			body: JSON.stringify({
+				link: link,
+			}),
+        });
+		console.log(response)
+        const data = await response.json();
+        
+        var messageElement = document.getElementById("message");
+        messageElement.innerHTML = "<p>" + data.message + "</p>";
+        messageElement.style.display = "block"; // Show the message element
+    } catch (error) {
+        console.error('Error parsing JSON from response:', error);
+        const responseText = await response.clone().text(); // Get the raw text of the response body
+        console.log('Received the following instead of valid JSON:', responseText);
+    }
 });
+
+window.onload = displayInitialMessage;

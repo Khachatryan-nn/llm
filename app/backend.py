@@ -1,35 +1,52 @@
-from fastapi import FastAPI, Form
-from pydantic import BaseModel
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, Request, Form
+from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import JSONResponse
-#import requests
-#from bs4 import BeautifulSoup
 
 app = FastAPI()
 
 # Mounting the static files directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Allowing CORS for all origins, you might want to restrict it in production
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Dummy function to simulate LLM model output
+def generate_message(link_length):
+    return f"Hello, the length of the link is {link_length}."
 
-class URLInput(BaseModel):
-    url: str
+@app.get("/", response_class=HTMLResponse)
+async def read_item():
+    with open("/var/www/html/app/index.html", "r") as file:
+        html_content = file.read()
+    initial_message = generate_message(0)  # Initial message with link length 0
+    html_content = html_content.replace('<!--INITIAL_MESSAGE-->', initial_message)
+    return HTMLResponse(content=html_content)
 
-@app.post("/analyze")
-async def analyze_webpage(url: str = Form(...)):
-    try:
-        # Fetching webpage content
-        # Here you can add your own logic to process the webpage content
-        # For demonstration purposes, let's just return the URL
-        return {"url": url}
-    except Exception as e:
-        # Returning error message if any exception occurs
-        return {"error": str(e)}
+@app.post("/")
+async def generate_response(link: str = Form(...)):
+    link_length = len(link)
+    message = generate_message(link_length)
+    return message  # Return only the message, not the entire HTML page
+from fastapi import FastAPI, Request, Form
+from fastapi.responses import JSONResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
+
+app = FastAPI()
+
+# Mounting the static files directory
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Dummy function to simulate LLM model output
+def generate_message(link_length):
+    return f"Hello, the length of the link is {link_length}."
+
+@app.get("/", response_class=HTMLResponse)
+async def read_item():
+    with open("/var/www/html/app/index.html", "r") as file:
+        html_content = file.read()
+    initial_message = generate_message(0)  # Initial message with link length 0
+    html_content = html_content.replace('<!--INITIAL_MESSAGE-->', initial_message)
+    return HTMLResponse(content=html_content)
+
+@app.post("/")
+async def generate_response(link: str = Form(...)):
+    link_length = len(link)
+    message = generate_message(link_length)
+    return message  # Return only the message, not the entire HTML page
