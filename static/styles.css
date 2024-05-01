@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #2c3e50, #34495e);
+    background: linear-gradient(to right, #262626, #1a1a1a);
     color: #fff;
 }
 
@@ -10,25 +10,31 @@ body {
     max-width: 600px;
     margin: 50px auto;
     text-align: center;
-    background: linear-gradient(to right, #2c3e50, #34495e);
+    background: linear-gradient(to right, #262626, #1a1a1a);
     color: #fff;
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 input[type="text"] {
-    width: 80%;
+    width: calc(100% - 40px);
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
     border: none;
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #333;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 button {
-    padding: 10px 20px;
+    padding: 12px 24px;
     background-color: #6c5ce7;
     color: #fff;
     border: none;
@@ -47,5 +53,5 @@ p {
     padding: 15px;
     border-radius: 5px;
     margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
