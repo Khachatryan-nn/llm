@@ -7,6 +7,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         pkg-config \
         libcairo2-dev \
+        build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy application code
