@@ -1,11 +1,15 @@
 from fastapi import FastAPI, Form
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
 #import requests
 #from bs4 import BeautifulSoup
 
 app = FastAPI()
+
+# Mounting the static files directory
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Allowing CORS for all origins, you might want to restrict it in production
 app.add_middleware(
