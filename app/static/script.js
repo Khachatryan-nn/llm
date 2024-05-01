@@ -20,11 +20,14 @@ document.getElementById("linkForm").addEventListener("submit", async function(ev
             link: link,
         }),
     });
-    const data = await response.json();
     
-    var messageElement = document.getElementById("message");
-    messageElement.innerHTML = "<p>" + data.message + "</p>";
-    messageElement.style.display = "block"; // Show the message element
+    if (response.ok) {
+        const data = await response.text(); // Get response as text
+        document.getElementById("message").innerHTML = data; // Set response as HTML
+        document.getElementById("message").style.display = "block"; // Show the message element
+    } else {
+        console.error('Error:', response.status);
+    }
 });
 
 // Call the function to display the initial message when the page loads
