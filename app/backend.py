@@ -7,18 +7,14 @@ app = FastAPI()
 # Mounting the static files directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Dummy function to simulate LLM model output
-def generate_message(link_length):
-    return f"Hello, the length of the link is {link_length}."
+# Define the initial message endpoint
+@app.get("/initial-message")
+async def initial_message():
+    return {"message": "Initial message from the server"}
 
-# Define new GET and POST endpoints
-@app.get("/initial-message", response_class=JSONResponse)
-async def get_initial_message():
-    initial_message = generate_message(0)
-    return {"message": initial_message}
-
-@app.post("/submit-link", response_class=JSONResponse)
+# Define the submit link endpoint
+@app.post("/submit-link")
 async def submit_link(link: str = Form(...)):
-    link_length = len(link)
-    message = generate_message(link_length)
-    return {"message": message}
+    # Perform any processing on the submitted link if needed
+    # For now, just return a response with a message
+    return JSONResponse(content={"message": f"Link submitted: {link}"})
