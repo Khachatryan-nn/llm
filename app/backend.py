@@ -1,9 +1,6 @@
 from fastapi import FastAPI, Form, Depends, TemplateResponse
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-
-templates = Jinja2Templates(directory="templates")  # Template directory
 
 app = FastAPI()
 
