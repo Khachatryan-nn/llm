@@ -34,11 +34,12 @@ async function handleSubmit(event) {
     }
 }
 
-function displayMessage(message) {
+function displayMessage(messageData) {
     const messageElement = document.getElementById("message");
-    messageElement.textContent = message;  // Update text content
+    messageElement.textContent = messageData.message.replace(/<br>/g, "\n");
     messageElement.style.display = "block";
 }
+
 
 document.getElementById("linkForm").addEventListener("submit", handleSubmit);
 window.onload = displayInitialMessage;
