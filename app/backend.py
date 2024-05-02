@@ -4,9 +4,6 @@ from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
-# Mounting the static files directory
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
 # Define the initial message endpoint
 @app.get("/")
 async def initial_message():
@@ -17,3 +14,6 @@ async def initial_message():
 async def submit_link(link: str = Form(...)):
     # Implement your link processing logic here
     return JSONResponse(content={"message": f"Link submitted: {link}"})
+
+# Mount static files at a dedicated route
+app.mount("/static", StaticFiles(directory="static"), name="static")
