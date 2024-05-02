@@ -1,28 +1,30 @@
 async function handleSubmit(event) {
-	event.preventDefault();
-	const link = document.getElementById("linkInput").value;
-	console.log('Link:', link);
+    event.preventDefault();
+    const link = document.getElementById("linkInput").value;
+    console.log('Link:', link);
   
-	try {
-	  const formData = new URLSearchParams({ link });
-	  const response = await fetch("/", {
-		method: "POST",
-		body: formData,
-	  });
+    try {
+        const formData = new URLSearchParams({ link });
+        const response = await fetch("/", {
+            method: "POST",
+            body: formData,
+        });
   
-	  if (!response.ok) {
-		throw new Error('Failed to submit link');
-	  }
+        if (!response.ok) {
+            throw new Error('Failed to submit link');
+        }
   
-	  const data = await response.text();  // Parse as text, assuming backend sends a string
-	  console.log('Response data:', data);
-	  const messageElement = document.getElementById("message");
-	  messageElement.textContent = data;  // Update text content with entire response
-	  messageElement.style.display = "block";
-	} catch (error) {
-	  console.error('Error submitting link:', error);
-	}
-  }
+        const responseData = await response.json();  // Parse response as JSON
+        const message = responseData.message;  // Extract message from response
+        console.log('Response message:', message);
+        
+        const messageElement = document.getElementById("message");
+        messageElement.innerHTML = message;  // Update HTML content with message
+        messageElement.style.display = "block";
+    } catch (error) {
+        console.error('Error submitting link:', error);
+    }
+}
   
 
 //function displayMessage(messageData) {
