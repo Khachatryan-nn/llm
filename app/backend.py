@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
+import sys
 
 app = FastAPI()
 
@@ -8,14 +9,14 @@ app = FastAPI()
 @app.get("/")
 async def initial_message():
     data = {"message": "Initial message from the server"}
-    print(data)  # Print the data to verify its structure
+    print(data, file=sys.stdout)  # Print the data to verify its structure
     return JSONResponse(content=data)
 
 # Define the submit link endpoint
 @app.post("/")
 async def submit_link(link: str = Form(...)):
     data = {"message": f"Link submitted: {link}"}
-    print(data)  # Print the data to verify its structure
+    print(data, file=sys.stdout)  # Print the data to verify its structure
     # Implement your link processing logic here
     return JSONResponse(content=data)
 
