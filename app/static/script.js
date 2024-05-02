@@ -1,18 +1,18 @@
 async function displayInitialMessage() {
-    try {
-        const response = await fetch("/");
-        const data = await response.json();
-        displayMessage(data.message);
-    } catch (error) {
-        console.error('Error fetching initial message:', error);
-    }
-}
+	try {
+	  const response = await fetch("/");
+	  const data = await response.json(); // Parse the response as JSON
+	  displayMessage(data.message);
+	} catch (error) {
+	  console.error('Error fetching initial message:', error);
+	}
+  }
 
-async function handleSubmit(event) {
+  async function handleSubmit(event) {
 	event.preventDefault();
 	const link = document.getElementById("linkInput").value;
 	console.log('Link:', link);
-	
+  
 	try {
 	  const formData = new URLSearchParams({ link });
 	  const response = await fetch("/", {
@@ -34,6 +34,7 @@ async function handleSubmit(event) {
 	  console.error('Error submitting link:', error);
 	}
   }
+  
   
 
 function displayMessage(message) {
