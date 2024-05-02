@@ -14,11 +14,9 @@ def generate_message(link_length):
 
 @app.get("/")
 async def read_item():
-    with open("/var/www/html/app/index.html", "r") as file:
-        html_content = file.read()
-    initial_message = generate_message(0)  # Initial message with link length 0
-    html_content = html_content.replace('{{ initial message }}', initial_message)
-    return HTMLResponse(content=html_content)
+    link_length = 0  # Initial message with link length 0
+    message = generate_message(link_length)
+    return JSONResponse(content={"message": message})
 
 @app.post("/")
 async def generate_response(link: str = Form(...)):

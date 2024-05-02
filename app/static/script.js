@@ -1,8 +1,8 @@
 async function displayInitialMessage() {
     try {
         const response = await fetch("/");
-        const data = await response.json();
-        displayMessage(data.message);
+        const data = await response.text();  // Parse as text
+        displayMessage(data);
     } catch (error) {
         console.error('Error fetching initial message:', error);
     }
@@ -12,14 +12,12 @@ async function handleSubmit(event) {
     event.preventDefault();
     const link = document.getElementById("linkInput").value;
     console.log('Link:', link);
-    
+
     try {
+        const formData = new URLSearchParams({ link });
         const response = await fetch("/", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ link }),
+            body: formData,
         });
 
         if (!response.ok) {
@@ -28,7 +26,9 @@ async function handleSubmit(event) {
 
         const data = await response.json();
         console.log('Response data:', data);
-        displayMessage(data.message);
+        const messageElement = document.getElementById("message");
+        messageElement.textContent = data.message;  // Update text content
+        messageElement.style.display = "block";
     } catch (error) {
         console.error('Error submitting link:', error);
     }
@@ -36,7 +36,7 @@ async function handleSubmit(event) {
 
 function displayMessage(message) {
     const messageElement = document.getElementById("message");
-    messageElement.innerHTML = `<p>${message}</p>`;
+    messageElement.textContent = message;  // Update text content
     messageElement.style.display = "block";
 }
 
