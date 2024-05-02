@@ -1,7 +1,9 @@
-from fastapi import FastAPI, Form
+from fastapi import FastAPI, Form, Depends, TemplateResponse
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+
+templates = Jinja2Templates(directory="templates")  # Template directory
 
 app = FastAPI()
 
@@ -13,10 +15,9 @@ def generate_message(link_length):
     return f"""Hello, the length of the link is {link_length}.\nThanks for using our services!""".replace("\n", "<br>")
 
 @app.get("/")
-async def read_item():
-    link_length = 0  # Initial message with link length 0
-    message = generate_message(link_length)
-    return JSONResponse(content={"message": message})
+async def root():
+    initial_message = generate_message(0)  # Initial message with link length 0
+    return JSONResponse(content={"message": initial_message})
 
 @app.post("/")
 async def generate_response(link: str = Form(...)):
