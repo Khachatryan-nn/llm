@@ -1,38 +1,37 @@
 async function displayInitialMessage() {
-	try {
-	  const response = await fetch("/");
-	  const data = await response.json(); // Parse the response as JSON
-	  displayMessage(data.message);
-	} catch (error) {
-	  console.error('Error fetching initial message:', error);
-	}
+    try {
+        const response = await fetch("/");
+        const data = await response.json();
+        displayMessage(data.message);
+    } catch (error) {
+        console.error('Error fetching initial message:', error);
+    }
 }
 
 async function handleSubmit(event) {
-	event.preventDefault();
-	const link = document.getElementById("linkInput").value;
-	console.log('Link:', link);
-  
-	try {
-		const formData = new URLSearchParams({ link });
-		const response = await fetch("/", {
-			method: "POST",
-			headers: {
-			"Content-Type": "application/x-www-form-urlencoded", // Changed for form data
-		},
-		body: formData.toString(),
-	});
-  
-	if (!response.ok) {
-		throw new Error('Failed to submit link');
-	}
+    event.preventDefault();
+    const link = document.getElementById("linkInput").value;
+    console.log('Link:', link);
+    
+    try {
+        const response = await fetch("/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ link }),
+        });
 
-	const data = await response.json();
-	console.log('Response data:', data);
-	displayMessage(data.message);
-	} catch (error) {
-		console.error('Error submitting link:', error);
-	}
+        if (!response.ok) {
+            throw new Error('Failed to submit link');
+        }
+
+        const data = await response.json();
+        console.log('Response data:', data);
+        displayMessage(data.message);
+    } catch (error) {
+        console.error('Error submitting link:', error);
+    }
 }
 
 function displayMessage(message) {
