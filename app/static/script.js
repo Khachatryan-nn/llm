@@ -1,6 +1,6 @@
 async function displayInitialMessage() {
     try {
-        const response = await fetch("/");
+        const response = await fetch("/initial-message");
         const data = await response.json();
         displayMessage(data.message);
     } catch (error) {
@@ -14,7 +14,7 @@ async function handleSubmit(event) {
     console.log('Link:', link);
     
     try {
-        const response = await fetch("/", {
+        const response = await fetch("/submit-link", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
