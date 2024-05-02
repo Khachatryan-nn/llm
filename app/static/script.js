@@ -1,29 +1,31 @@
-async function handleSubmit(event) {
-	event.preventDefault();
-	const link = document.getElementById("linkInput").value;
-	console.log('Link:', link);
-  
-	try {
-	  const formData = new URLSearchParams({ link });
-	  const response = await fetch("/", {
-		method: "POST",
-		body: formData,
-	  });
-  
-	  if (!response.ok) {
-		throw new Error('Failed to submit link');
-	  }
-  
-	  const responseData = await response.json();
-	  const message = responseData.message;
-	  console.log('Response message:', message);
-  
-	  const messageElement = document.getElementById("message");
-	  messageElement.innerHTML = message; // Update HTML content with message
-	  messageElement.style.display = "block";
-	} catch (error) {
-	  console.error('Error submitting link:', error);
-	}
-  }
+// Function to fetch and display the initial message
+async function displayInitialMessage() {
+    const response = await fetch("/");
+    const data = await response.json();
+    document.getElementById("message").textContent = data.message;
+    document.getElementById("message").style.display = "block"; // Show the message element
+}
 
-document.getElementById("linkForm").addEventListener("submit", handleSubmit);
+// Function to handle form submission
+document.getElementById("linkForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    var link = document.getElementById("linkInput").value;
+    
+    const response = await fetch("/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+            link: link,
+        }),
+    });
+    const data = await response.json();
+    
+    var messageElement = document.getElementById("message");
+    messageElement.innerHTML = "<p>" + data.message + "</p>";
+    messageElement.style.display = "block"; // Show the message element
+});
+
+// Call the function to display the initial message when the page loads
+window.onload = displayInitialMessage;
