@@ -1,43 +1,44 @@
 async function displayInitialMessage() {
-    const response = await fetch("/");
-    const clonedResponse = response.clone(); // Clone the response before consuming it
     try {
+        const response = await fetch("/");
         const data = await response.json();
-        document.getElementById("message").textContent = data.message;
-        document.getElementById("message").style.display = "block"; // Show the message element
+        displayMessage(data.message);
     } catch (error) {
-        const responseText = await clonedResponse.text(); // Get the raw text of the response body
-        console.log('Received the following instead of valid JSON:', responseText);
-        console.error('Error parsing JSON from response:', error);
+        console.error('Error fetching initial message:', error);
     }
 }
 
-
-document.getElementById("linkForm").addEventListener("submit", async function(event) {
+async function handleSubmit(event) {
     event.preventDefault();
     const link = document.getElementById("linkInput").value;
-    console.log(link);
+    console.log('Link:', link);
     
-    const response = await fetch("/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json", // Set content type to JSON
-        },
-        body: JSON.stringify({
-            link: link,
-        }),
-    });
-    console.log(response);
     try {
-        const data = await response.json();
-		console.log(data);
-        
-        var messageElement = document.getElementById("message");
-        messageElement.innerHTML = "<p>" + data.message + "</p>";
-        messageElement.style.display = "block"; // Show the message element
-    } catch (error) {
-        console.error('Error parsing JSON from response:', error);
-    }
-});
+        const response = await fetch("/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ link }),
+        });
 
+        if (!response.ok) {
+            throw new Error('Failed to submit link');
+        }
+
+        const data = await response.json();
+        console.log('Response data:', data);
+        displayMessage(data.message);
+    } catch (error) {
+        console.error('Error submitting link:', error);
+    }
+}
+
+function displayMessage(message) {
+    const messageElement = document.getElementById("message");
+    messageElement.innerHTML = `<p>${message}</p>`;
+    messageElement.style.display = "block";
+}
+
+document.getElementById("linkForm").addEventListener("submit", handleSubmit);
 window.onload = displayInitialMessage;

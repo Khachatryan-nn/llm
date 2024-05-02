@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Form
+from fastapi import FastAPI, Form
 from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -7,7 +7,6 @@ app = FastAPI()
 # Mounting the static files directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Dummy function to simulate LLM model output
 def generate_message(link_length):
     return f"Hello, the length of the link is {link_length}."
 
@@ -21,6 +20,9 @@ async def read_item():
 
 @app.post("/")
 async def generate_response(link: str = Form(...)):
-    link_length = len(link)
-    message = generate_message(link_length)
-    return JSONResponse(content={"message": message}) # Return only the message, not the entire HTML page
+    try:
+        link_length = len(link)
+        message = generate_message(link_length)
+        return JSONResponse(content={"message": message})
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)})
