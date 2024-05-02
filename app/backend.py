@@ -8,12 +8,12 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Define the initial message endpoint
-@app.get("/initial-message")
+@app.get("/")
 async def initial_message():
     return {"message": "Initial message from the server"}
 
 # Define the submit link endpoint
-@app.post("/submit-link")
+@app.post("/")
 async def submit_link(link: str = Form(...)):
     # Perform any processing on the submitted link if needed
     # For now, just return a response with a message
